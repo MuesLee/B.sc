@@ -17,12 +17,11 @@ public JiraDate() {
 }
 
 
-
 @Override
 public String toString() {
-	return "JiraDate [iso8601=" + date + ", friendly=" + friendlyFormattedDate + ", epochMillis=" + epochMillis + "]";
+	return "JiraDate [date=" + date + ", friendlyFormattedDate=" + friendlyFormattedDate + ", epochMillis="
+			+ epochMillis + "]";
 }
-
 
 
 public Date getIso8601() {
