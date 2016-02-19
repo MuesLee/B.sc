@@ -3,11 +3,13 @@ package de.ts.ticketsystem.client.jira.objects;
 import java.net.URI;
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Request {
 
 	private URI self;
 	private String expand;
-	
+
 	private int issueId;
 	private int issueTypeId;
 	private String issueKey;
@@ -20,24 +22,23 @@ public class Request {
 	private Reporter reporter;
 
 	private int projectId;
-	
+
+	@SerializedName("_links")
+	private Links links;
+
 	private List<FieldValue> requestFieldValues;
 
 	public Request() {
 
 	}
-	
 
 	@Override
 	public String toString() {
 		return "Request [self=" + self + ", expand=" + expand + ", issueId=" + issueId + ", issueTypeId=" + issueTypeId
 				+ ", issueKey=" + issueKey + ", serviceDeskId=" + serviceDeskId + ", currentStatus=" + currentStatus
-				+ ", createdDate=" + createdDate + ", reporter=" + reporter + ", projectId=" + projectId
-				+ ", requestedFieldValues=" + requestFieldValues + "]";
+				+ ", createdDate=" + createdDate + ", reporter=" + reporter + ", projectId=" + projectId + ", links="
+				+ links + ", requestFieldValues=" + requestFieldValues + "]";
 	}
-
-
-
 
 	public int getIssueTypeId() {
 		return issueTypeId;
@@ -119,14 +120,20 @@ public class Request {
 		this.self = self;
 	}
 
-
 	public String getExpand() {
 		return expand;
 	}
 
-
 	public void setExpand(String expand) {
 		this.expand = expand;
+	}
+
+	public Links getLinks() {
+		return links;
+	}
+
+	public void setLinks(Links links) {
+		this.links = links;
 	}
 
 }
