@@ -2,10 +2,15 @@ package de.ts.ticketsystem.client.jira.objects;
 
 import java.util.Date;
 
+import com.google.gson.annotations.SerializedName;
+
 public class JiraDate {
 
-private Date iso8601;
-private String friendly;
+@SerializedName("iso8601")
+private Date date;
+
+@SerializedName("friendly")
+private String friendlyFormattedDate;
 private long epochMillis;
 
 public JiraDate() {
@@ -15,25 +20,25 @@ public JiraDate() {
 
 @Override
 public String toString() {
-	return "JiraDate [iso8601=" + iso8601 + ", friendly=" + friendly + ", epochMillis=" + epochMillis + "]";
+	return "JiraDate [iso8601=" + date + ", friendly=" + friendlyFormattedDate + ", epochMillis=" + epochMillis + "]";
 }
 
 
 
 public Date getIso8601() {
-	return iso8601;
+	return date;
 }
 
 public void setIso8601(Date iso8601) {
-	this.iso8601 = iso8601;
+	this.date = iso8601;
 }
 
 public String getFriendly() {
-	return friendly;
+	return friendlyFormattedDate;
 }
 
 public void setFriendly(String friendly) {
-	this.friendly = friendly;
+	this.friendlyFormattedDate = friendly;
 }
 
 public long getEpochMillis() {
