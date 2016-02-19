@@ -1,7 +1,11 @@
 package de.ts.ticketsystem.client.jira.objects;
 
+import java.net.URI;
+
 public class Reporter {
 
+	private URI self;
+	
 	private String name;
 	private String key;
 	private String emailAddress;
@@ -15,11 +19,14 @@ public class Reporter {
 		
 	}
 
+
 	@Override
 	public String toString() {
-		return "Reporter [name=" + name + ", key=" + key + ", emailAddress=" + emailAddress + ", displayName="
-				+ displayName + ", active=" + active + ", timeZone=" + timeZone + ", avatarUrls=" + getAvatarUrls() + "]";
+		return "Reporter [self=" + self + ", name=" + name + ", key=" + key + ", emailAddress=" + emailAddress
+				+ ", displayName=" + displayName + ", active=" + active + ", timeZone=" + timeZone + ", avatarUrls="
+				+ avatarUrls + "]";
 	}
+
 
 	public String getName() {
 		return name;
@@ -75,6 +82,14 @@ public class Reporter {
 
 	public void setAvatarUrls(AvatarUrl avatarUrls) {
 		this.avatarUrls = avatarUrls;
+	}
+
+	public URI getSelf() {
+		return self;
+	}
+
+	public void setSelf(URI self) {
+		this.self = self;
 	}
 
 }
