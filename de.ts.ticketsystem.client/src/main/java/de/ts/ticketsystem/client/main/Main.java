@@ -10,61 +10,54 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
-import org.glassfish.jersey.client.ClientConfig;
-import org.glassfish.jersey.client.ClientProperties;
-import org.glassfish.jersey.jackson.JacksonFeature;
+import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+import com.google.gson.Gson;
+
+import de.ts.ticketsystem.client.jira.objects.Request;
 
 public class Main {
 
 	private static URI jiraServerUri = UriBuilder.fromUri("https://callmats.atlassian.net").build();
-	private static URI googleServerUri = UriBuilder.fromUri("https://google.de").build();
-
-	private static URI proxyServerUri = UriBuilder.fromUri("URI").build();
-	private static final String proxyUserName = "dont even";
-	private static final String proxyPW = "trololol";
 
 	public static void main(String[] args) {
-		//test1();
-		
-		test2();
-		
+		test1();
+
+
 	}
-	
-	
-	private static void test1()
-	{
-		ClientConfig config = new ClientConfig();
+
+	private static void test1() {
 		
-		Client client = ClientBuilder.newClient(config);
-		client.register(JacksonFeature.class);
+		HttpAuthenticationFeature basicAuthenticationFeature = HttpAuthenticationFeature.basic("admin", "Ah1005desc");
 		
+		Client client = createHttpClient(jiraServerUri, basicAuthenticationFeature);
+
 		WebTarget target = client.target(jiraServerUri);
-
-		Builder request = target.path("rest").path("api").path("latest").path("issue").path("MAT-1").request(MediaType.APPLICATION_JSON);
-		String response = request.get(Response.class).toString();
-
-		System.out.println(response);
+		
+		Request jiraRequest = getRequestById(target);
+		
+		System.out.println(jiraRequest);
 		client.close();
 	}
+
+	private static Request getRequestById(WebTarget target) {
+		//GET /rest/servicedeskapi/request/{issueIdOrKey}
+		
+		Builder request = target.path("rest").path("servicedeskapi").path("request").path("HEIZ-4")
+				.request(MediaType.APPLICATION_JSON);
+		request.header("X-ExperimentalApi", "opt-in");
+		Response response = request.get();
+		String jsonString = response.readEntity(String.class);
+		Gson gson = new Gson();
+		Request jiraRequest = gson.fromJson(jsonString, Request.class);
+		return jiraRequest;
+	}
 	
-	private static void test2()
+	private static Client createHttpClient(URI uri, HttpAuthenticationFeature authenticationFeature)
 	{
-		ClientConfig config = new ClientConfig();
+		Client client = ClientBuilder.newClient();
+		client.register(authenticationFeature);
 		
-		
-		config.property(ClientProperties.CONNECT_TIMEOUT, 1000);
-		config.property(ClientProperties.PROXY_URI, proxyServerUri.toString());
-		config.property(ClientProperties.PROXY_PASSWORD, proxyPW);
-		config.property(ClientProperties.PROXY_USERNAME, proxyUserName);
-		
-		Client client = ClientBuilder.newClient(config);
-		
-		WebTarget target = client.target(googleServerUri);
-		
-		Builder request = target.request(MediaType.TEXT_HTML);
-		String response = request.get(Response.class).toString();
-		
-		System.out.println(response);
-		client.close();
+		return client;
 	}
 }
