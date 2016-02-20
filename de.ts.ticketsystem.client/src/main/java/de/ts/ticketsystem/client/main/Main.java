@@ -4,56 +4,42 @@ import java.net.URI;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
-import com.google.gson.Gson;
-
 import de.ts.ticketsystem.client.jira.objects.Request;
+import de.ts.ticketsystem.client.jira.servicedeskapi.JiraServicedeskDAO;
 
 public class Main {
 
-	private static URI jiraServerUri = UriBuilder.fromUri("https://callmats.atlassian.net").build();
+	private static URI jiraServerUri = UriBuilder.fromUri(Properties.getString("Main.JIRA_SERVICE_DESK_URL")).build(); //$NON-NLS-1$
 
 	public static void main(String[] args) {
 		test1();
 
 
 	}
+	
+	
 
 	private static void test1() {
 		
-		HttpAuthenticationFeature basicAuthenticationFeature = HttpAuthenticationFeature.basic("admin", "Ah1005desc");
+		HttpAuthenticationFeature basicAuthenticationFeature = HttpAuthenticationFeature.basic(Properties.getString("Main.JIRA_ACCOUNTNAME"), Properties.getString("Main.JIRA_PASSWORD")); //$NON-NLS-1$ //$NON-NLS-2$
 		
-		Client client = createHttpClient(jiraServerUri, basicAuthenticationFeature);
-
+		Client client = createHttpClient(basicAuthenticationFeature);
 		WebTarget target = client.target(jiraServerUri);
 		
-		Request jiraRequest = getRequestById(target);
+		JiraServicedeskDAO jiraServicedeskDAO = new JiraServicedeskDAO(target);
+
+		Request jiraRequest = jiraServicedeskDAO .getRequestById("HEIZ-4"); //$NON-NLS-1$
 		
 		System.out.println(jiraRequest);
 		client.close();
 	}
 
-	private static Request getRequestById(WebTarget target) {
-		//GET /rest/servicedeskapi/request/{issueIdOrKey}
-		
-		Builder request = target.path("rest").path("servicedeskapi").path("request").path("HEIZ-4")
-				.request(MediaType.APPLICATION_JSON);
-		request.header("X-ExperimentalApi", "opt-in");
-		Response response = request.get();
-		String jsonString = response.readEntity(String.class);
-		Gson gson = new Gson();
-		Request jiraRequest = gson.fromJson(jsonString, Request.class);
-		return jiraRequest;
-	}
-	
-	private static Client createHttpClient(URI uri, HttpAuthenticationFeature authenticationFeature)
+	private static Client createHttpClient(HttpAuthenticationFeature authenticationFeature)
 	{
 		Client client = ClientBuilder.newClient();
 		client.register(authenticationFeature);
