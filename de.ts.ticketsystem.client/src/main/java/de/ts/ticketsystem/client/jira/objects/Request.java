@@ -5,23 +5,32 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * Represents a full JIRA ServiceDesk Request. This class should not be created
+ * manually. It should be deserialized from a JSON Response of your JIRA instance.
+ * Use {@link NewRestRequest} to create a new Request, which can be posted to
+ * your JIRA instance.
+ *
+ */
 public class Request {
 
 	private URI self;
 	private String expand;
 
-	private int issueId;
-	private int issueTypeId;
+	private Integer issueId;
+	private Integer issueTypeId;
 	private String issueKey;
 
-	private int serviceDeskId;
+	private Integer serviceDeskId;
+	private Integer requestTypeId;
+
+	private Integer projectId;
+
 	private Status currentStatus;
 
 	private JiraDate createdDate;
 
 	private Reporter reporter;
-
-	private int projectId;
 
 	@SerializedName("_links")
 	private Links links;
@@ -32,12 +41,19 @@ public class Request {
 
 	}
 
+	public Request(int requestTypeId, int serviceDeskId, List<FieldValue> requestFieldValues) {
+		super();
+		this.setRequestTypeId(requestTypeId);
+		this.serviceDeskId = serviceDeskId;
+		this.requestFieldValues = requestFieldValues;
+	}
+
 	@Override
 	public String toString() {
 		return "Request [self=" + self + ", expand=" + expand + ", issueId=" + issueId + ", issueTypeId=" + issueTypeId
-				+ ", issueKey=" + issueKey + ", serviceDeskId=" + serviceDeskId + ", currentStatus=" + currentStatus
-				+ ", createdDate=" + createdDate + ", reporter=" + reporter + ", projectId=" + projectId + ", links="
-				+ links + ", requestFieldValues=" + requestFieldValues + "]";
+				+ ", issueKey=" + issueKey + ", serviceDeskId=" + serviceDeskId + ", requestTypeId=" + requestTypeId
+				+ ", currentStatus=" + currentStatus + ", createdDate=" + createdDate + ", reporter=" + reporter
+				+ ", projectId=" + projectId + ", links=" + links + ", requestFieldValues=" + requestFieldValues + "]";
 	}
 
 	public int getIssueTypeId() {
@@ -134,6 +150,14 @@ public class Request {
 
 	public void setLinks(Links links) {
 		this.links = links;
+	}
+
+	public int getRequestTypeId() {
+		return requestTypeId;
+	}
+
+	public void setRequestTypeId(int requestTypeId) {
+		this.requestTypeId = requestTypeId;
 	}
 
 }

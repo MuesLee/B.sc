@@ -9,6 +9,14 @@ public class FieldValue {
 	public FieldValue() {
 	}
 
+	
+	
+	public FieldValue(String fieldId, String value) {
+		super();
+		this.fieldId = fieldId;
+		this.value = value;
+	}
+
 	@Override
 	public String toString() {
 		return "FieldValue [fieldId=" + fieldId + ", label=" + label + ", value=" + value + "]";
