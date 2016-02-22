@@ -12,6 +12,8 @@ import javax.ws.rs.core.UriBuilder;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
 import de.ts.ticketsystem.client.jira.objects.FieldValue;
+import de.ts.ticketsystem.client.jira.objects.NewRestRequest;
+import de.ts.ticketsystem.client.jira.objects.NewRestRequestFieldValue;
 import de.ts.ticketsystem.client.jira.objects.Request;
 import de.ts.ticketsystem.client.jira.servicedeskapi.JiraServicedeskDAO;
 
@@ -53,20 +55,19 @@ public class Main {
 
 		JiraServicedeskDAO jiraServicedeskDAO = new JiraServicedeskDAO(target);
 
-		Request givenRequest = createTestRequest();
+		NewRestRequest givenRequest = createTestRequest();
 		Request returnedRequest = jiraServicedeskDAO.postNewRequest(givenRequest); // $NON-NLS-1$
 
 		System.out.println(returnedRequest);
 		client.close();
 	}
 
-	private static Request createTestRequest() {
+	private static NewRestRequest createTestRequest() {
 
 		int requestTypeId = _REQUESTTYPE_ID_TECHNISCHERSERVICE;
 		int serviceDeskId = _SERVICEDESK_ID_HEIZUNG;
-		List<FieldValue> requestFieldValues = new ArrayList<>();
-		requestFieldValues.add(new FieldValue("summary", "REST JAVA TEST"));
-		Request request = new Request(serviceDeskId, requestTypeId, requestFieldValues);
+		NewRestRequestFieldValue requestFieldValues = new NewRestRequestFieldValue("REST JAVA TEST", "Submitted via java Rest API call");
+		NewRestRequest request = new NewRestRequest(serviceDeskId, requestTypeId, requestFieldValues);
 
 		return request;
 	}

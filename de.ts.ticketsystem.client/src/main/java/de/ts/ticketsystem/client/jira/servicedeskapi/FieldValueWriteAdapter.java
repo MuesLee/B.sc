@@ -18,9 +18,14 @@ public class FieldValueWriteAdapter extends TypeAdapter<FieldValue> {
 	    	  out.nullValue();
 	          return;
 	        }
-	      String shortFieldValueString = value.getFieldId() + ": " +value.getValue();
 	      
-	      out.value(shortFieldValueString);
+	      StringBuilder stringBuilder = new StringBuilder();
+	      stringBuilder.append("\""+value.getFieldId());
+	      stringBuilder.append("\": \"");
+	      stringBuilder.append(value.getValue()+"\"");
+	      String shortFieldValueString = stringBuilder.toString();
+
+	      out.jsonValue(shortFieldValueString);
 		
 	}
 

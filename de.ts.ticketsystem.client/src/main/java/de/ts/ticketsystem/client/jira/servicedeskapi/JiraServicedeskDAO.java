@@ -7,16 +7,14 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import de.ts.ticketsystem.client.jira.objects.FieldValue;
+import de.ts.ticketsystem.client.jira.objects.NewRestRequest;
 import de.ts.ticketsystem.client.jira.objects.Request;
 
 public class JiraServicedeskDAO {
 
 	private WebTarget target;
 	private Gson gson;
-	private Gson gsonCustomFieldValue;
 
 	/**
 	 * Constructs a new instance, which is connecting and communicating with the
@@ -30,8 +28,6 @@ public class JiraServicedeskDAO {
 	public JiraServicedeskDAO(WebTarget target) {
 		this.target = target;
 		gson = new Gson();
-		GsonBuilder gsonBuilder = new GsonBuilder();
-		gsonCustomFieldValue = gsonBuilder.registerTypeAdapter(FieldValue.class, new FieldValueWriteAdapter()).create();
 	}
 
 	/**
@@ -56,9 +52,9 @@ public class JiraServicedeskDAO {
 		return jiraRequest;
 	}
 
-	public Request postNewRequest(Request newRestRequest) {
+	public Request postNewRequest(NewRestRequest newRestRequest) {
 		
-		String jsonString = gsonCustomFieldValue.toJson(newRestRequest);
+		String jsonString = gson.toJson(newRestRequest);
 
 		// POST /rest/servicedeskapi/request
 		Builder builder = target.path("rest").path("servicedeskapi").path("request")
