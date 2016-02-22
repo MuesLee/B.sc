@@ -10,11 +10,11 @@ import javax.ws.rs.core.UriBuilder;
 
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
-import de.ts.ticketsystem.client.jira.objects.NewRestRequest;
-import de.ts.ticketsystem.client.jira.objects.NewRestRequestFieldValue;
-import de.ts.ticketsystem.client.jira.objects.Request;
-import de.ts.ticketsystem.client.jira.objects.ServiceDesk;
 import de.ts.ticketsystem.client.jira.servicedeskapi.JiraServicedeskDAO;
+import de.ts.ticketsystem.client.jira.servicedeskapi.objects.NewRestRequest;
+import de.ts.ticketsystem.client.jira.servicedeskapi.objects.NewRestRequestFieldValue;
+import de.ts.ticketsystem.client.jira.servicedeskapi.objects.Request;
+import de.ts.ticketsystem.client.jira.servicedeskapi.objects.ServiceDesk;
 
 public class Main {
 

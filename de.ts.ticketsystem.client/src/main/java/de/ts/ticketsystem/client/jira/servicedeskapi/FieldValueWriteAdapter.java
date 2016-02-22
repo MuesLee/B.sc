@@ -7,7 +7,7 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
-import de.ts.ticketsystem.client.jira.objects.FieldValue;
+import de.ts.ticketsystem.client.jira.servicedeskapi.objects.FieldValue;
 
 public class FieldValueWriteAdapter extends TypeAdapter<FieldValue> {
 

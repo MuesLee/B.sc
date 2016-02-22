@@ -10,10 +10,10 @@ import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
 
-import de.ts.ticketsystem.client.jira.objects.NewRestRequest;
-import de.ts.ticketsystem.client.jira.objects.Request;
-import de.ts.ticketsystem.client.jira.objects.ResultPage;
-import de.ts.ticketsystem.client.jira.objects.ServiceDesk;
+import de.ts.ticketsystem.client.jira.servicedeskapi.objects.NewRestRequest;
+import de.ts.ticketsystem.client.jira.servicedeskapi.objects.Request;
+import de.ts.ticketsystem.client.jira.servicedeskapi.objects.ResultPage;
+import de.ts.ticketsystem.client.jira.servicedeskapi.objects.ServiceDesk;
 
 public class JiraServicedeskDAO {
 

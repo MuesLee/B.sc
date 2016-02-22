@@ -1,4 +1,4 @@
-package de.ts.ticketsystem.client.jira.objects;
+package de.ts.ticketsystem.client.jira.servicedeskapi.objects;
 
 import java.net.URI;
 import java.util.List;
