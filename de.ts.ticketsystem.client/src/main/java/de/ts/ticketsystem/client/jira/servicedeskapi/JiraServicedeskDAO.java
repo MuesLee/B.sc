@@ -1,5 +1,7 @@
 package de.ts.ticketsystem.client.jira.servicedeskapi;
 
+import java.util.List;
+
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.client.WebTarget;
@@ -10,6 +12,7 @@ import com.google.gson.Gson;
 
 import de.ts.ticketsystem.client.jira.objects.NewRestRequest;
 import de.ts.ticketsystem.client.jira.objects.Request;
+import de.ts.ticketsystem.client.jira.objects.RequestList;
 
 public class JiraServicedeskDAO {
 
@@ -50,6 +53,27 @@ public class JiraServicedeskDAO {
 		String jsonString = response.readEntity(String.class);
 		Request jiraRequest = gson.fromJson(jsonString, Request.class);
 		return jiraRequest;
+	}
+	
+	/**
+	 * Returns a list of all requests created or participated by the authenticated user
+	 * 
+	 * @return
+	 */
+	public List<Request> getMyRequests() {
+		
+		// GET /rest/servicedeskapi/request/
+		Builder builder = target.path("rest").path("servicedeskapi").path("request")
+				.request(MediaType.APPLICATION_JSON);
+		
+		// Mandatory to use the Experimental Jira Service Desk API
+		builder.header("X-ExperimentalApi", "opt-in");
+		
+		Response response = builder.get();
+		String jsonString = response.readEntity(String.class);
+		RequestList fromJson = gson.fromJson(jsonString, RequestList.class);
+		List<Request> jiraRequests = fromJson.getValues();
+		return jiraRequests;
 	}
 
 	public Request postNewRequest(NewRestRequest newRestRequest) {

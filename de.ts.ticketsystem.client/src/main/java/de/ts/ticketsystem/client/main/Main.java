@@ -1,7 +1,6 @@
 package de.ts.ticketsystem.client.main;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.client.Client;
@@ -11,7 +10,6 @@ import javax.ws.rs.core.UriBuilder;
 
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
-import de.ts.ticketsystem.client.jira.objects.FieldValue;
 import de.ts.ticketsystem.client.jira.objects.NewRestRequest;
 import de.ts.ticketsystem.client.jira.objects.NewRestRequestFieldValue;
 import de.ts.ticketsystem.client.jira.objects.Request;
@@ -24,43 +22,30 @@ public class Main {
 	private static URI jiraServerUri = UriBuilder.fromUri(Properties.getString("Main.JIRA_SERVICE_DESK_URL")).build(); //$NON-NLS-1$
 
 	public static void main(String[] args) {
-		getRequestTest();
-
-		postRequestTest();
-	}
-
-	private static void getRequestTest() {
-
+		
 		HttpAuthenticationFeature basicAuthenticationFeature = HttpAuthenticationFeature
 				.basic(Properties.getString("Main.JIRA_ACCOUNTNAME"), Properties.getString("Main.JIRA_PASSWORD")); //$NON-NLS-1$ //$NON-NLS-2$
-
+		
 		Client client = createHttpClient(basicAuthenticationFeature);
 		WebTarget target = client.target(jiraServerUri);
-
+		
 		JiraServicedeskDAO jiraServicedeskDAO = new JiraServicedeskDAO(target);
-
+		
+		//GET Request
 		Request jiraRequest = jiraServicedeskDAO.getRequestById("HEIZ-4"); //$NON-NLS-1$
 
-		// System.out.println(jiraRequest);
+		//POST Request
+//		NewRestRequest givenRequest = createTestRequest();
+//		Request returnedRequest = jiraServicedeskDAO.postNewRequest(givenRequest); // $NON-NLS-1$
+//		System.out.println(returnedRequest);
+		
+		//GET My Requests
+		List<Request> myRequests = jiraServicedeskDAO.getMyRequests();
+		System.out.println(myRequests);
+		
 		client.close();
 	}
 
-	private static void postRequestTest() {
-
-		HttpAuthenticationFeature basicAuthenticationFeature = HttpAuthenticationFeature
-				.basic(Properties.getString("Main.JIRA_ACCOUNTNAME"), Properties.getString("Main.JIRA_PASSWORD")); //$NON-NLS-1$ //$NON-NLS-2$
-
-		Client client = createHttpClient(basicAuthenticationFeature);
-		WebTarget target = client.target(jiraServerUri);
-
-		JiraServicedeskDAO jiraServicedeskDAO = new JiraServicedeskDAO(target);
-
-		NewRestRequest givenRequest = createTestRequest();
-		Request returnedRequest = jiraServicedeskDAO.postNewRequest(givenRequest); // $NON-NLS-1$
-
-		System.out.println(returnedRequest);
-		client.close();
-	}
 
 	private static NewRestRequest createTestRequest() {
 
