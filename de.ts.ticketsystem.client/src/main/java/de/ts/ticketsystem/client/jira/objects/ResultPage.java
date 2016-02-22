@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
-public class RequestList {
+public class ResultPage<T> {
 
 	private String expand;
 	private Integer size;
@@ -14,9 +14,9 @@ public class RequestList {
 	@SerializedName("_links")
 	private Links links;
 	
-	private List<Request> values;
+	private List<T> values;
 	
-	public RequestList() {
+	public ResultPage() {
 	}
 
 	public String getExpand() {
@@ -67,11 +67,11 @@ public class RequestList {
 		this.links = links;
 	}
 
-	public List<Request> getValues() {
+	public List<T> getValues() {
 		return values;
 	}
 
-	public void setValues(List<Request> values) {
+	public void setValues(List<T> values) {
 		this.values = values;
 	}
 	

@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 
 import de.ts.ticketsystem.client.jira.objects.NewRestRequest;
 import de.ts.ticketsystem.client.jira.objects.Request;
-import de.ts.ticketsystem.client.jira.objects.RequestList;
+import de.ts.ticketsystem.client.jira.objects.ResultPage;
 
 public class JiraServicedeskDAO {
 
@@ -71,7 +71,7 @@ public class JiraServicedeskDAO {
 		
 		Response response = builder.get();
 		String jsonString = response.readEntity(String.class);
-		RequestList fromJson = gson.fromJson(jsonString, RequestList.class);
+		ResultPage fromJson = gson.fromJson(jsonString, ResultPage.class);
 		List<Request> jiraRequests = fromJson.getValues();
 		return jiraRequests;
 	}
