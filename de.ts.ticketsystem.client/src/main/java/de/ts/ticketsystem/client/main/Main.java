@@ -13,6 +13,7 @@ import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import de.ts.ticketsystem.client.jira.objects.NewRestRequest;
 import de.ts.ticketsystem.client.jira.objects.NewRestRequestFieldValue;
 import de.ts.ticketsystem.client.jira.objects.Request;
+import de.ts.ticketsystem.client.jira.objects.ServiceDesk;
 import de.ts.ticketsystem.client.jira.servicedeskapi.JiraServicedeskDAO;
 
 public class Main {
@@ -33,6 +34,7 @@ public class Main {
 		
 		//GET Request
 		Request jiraRequest = jiraServicedeskDAO.getRequestById("HEIZ-4"); //$NON-NLS-1$
+		System.out.println(jiraRequest);
 
 		//POST Request
 //		NewRestRequest givenRequest = createTestRequest();
@@ -42,6 +44,10 @@ public class Main {
 		//GET My Requests
 		List<Request> myRequests = jiraServicedeskDAO.getMyRequests();
 		System.out.println(myRequests);
+		
+		//GET ServiceDesk
+		ServiceDesk serviceDeskById = jiraServicedeskDAO.getServiceDeskById("1");
+		System.out.println(serviceDeskById);
 		
 		client.close();
 	}

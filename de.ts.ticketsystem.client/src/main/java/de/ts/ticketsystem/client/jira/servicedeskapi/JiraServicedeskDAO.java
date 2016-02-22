@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 import de.ts.ticketsystem.client.jira.objects.NewRestRequest;
 import de.ts.ticketsystem.client.jira.objects.Request;
 import de.ts.ticketsystem.client.jira.objects.ResultPage;
+import de.ts.ticketsystem.client.jira.objects.ServiceDesk;
 
 public class JiraServicedeskDAO {
 
@@ -95,6 +96,28 @@ public class JiraServicedeskDAO {
 		Request returnedjiraRequest = gson.fromJson(jsonString, Request.class);
 		return returnedjiraRequest;
 
+	}
+	
+	/**
+	 * Returns the ServiceDesk for the given id
+	 * 
+	 * @param serviceDeskId
+	 *            Id of the searched service desk
+	 * @return
+	 */
+	public ServiceDesk getServiceDeskById(String serviceDeskId) {
+
+		// GET /rest/servicedeskapi/servicedesk/{serviceDeskId}
+		Builder builder = target.path("rest").path("servicedeskapi").path("servicedesk").path(serviceDeskId)
+				.request(MediaType.APPLICATION_JSON);
+
+		// Mandatory to use the Experimental Jira Service Desk API
+		builder.header("X-ExperimentalApi", "opt-in");
+
+		Response response = builder.get();
+		String jsonString = response.readEntity(String.class);
+		ServiceDesk serviceDesk = gson.fromJson(jsonString, ServiceDesk.class);
+		return serviceDesk;
 	}
 
 }
