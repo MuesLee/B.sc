@@ -10,6 +10,8 @@ import javax.ws.rs.core.UriBuilder;
 
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
+import de.ts.ticketsystem.client.jira.platformapi.JiraPlatformDAO;
+import de.ts.ticketsystem.client.jira.platformapi.objects.Issue;
 import de.ts.ticketsystem.client.jira.servicedeskapi.JiraServicedeskDAO;
 import de.ts.ticketsystem.client.jira.servicedeskapi.objects.NewRestRequest;
 import de.ts.ticketsystem.client.jira.servicedeskapi.objects.NewRestRequestFieldValue;
@@ -41,14 +43,18 @@ public class Main {
 //		Request returnedRequest = jiraServicedeskDAO.postNewRequest(givenRequest); // $NON-NLS-1$
 //		System.out.println(returnedRequest);
 		
-		//GET My Requests
-		List<Request> myRequests = jiraServicedeskDAO.getMyRequests();
-		System.out.println(myRequests);
+//		//GET My Requests
+//		List<Request> myRequests = jiraServicedeskDAO.getMyRequests();
+//		System.out.println(myRequests);
+//		
+//		//GET ServiceDesk
+//		ServiceDesk serviceDeskById = jiraServicedeskDAO.getServiceDeskById("1");
+//		System.out.println(serviceDeskById);
 		
-		//GET ServiceDesk
-		ServiceDesk serviceDeskById = jiraServicedeskDAO.getServiceDeskById("1");
-		System.out.println(serviceDeskById);
+		JiraPlatformDAO jiraPlatformDAO = new JiraPlatformDAO(target);
 		
+		Issue issue = jiraPlatformDAO.getIssue("HEIZ-2");
+		System.out.println(issue);
 		client.close();
 	}
 

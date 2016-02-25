@@ -8,30 +8,21 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.google.gson.Gson;
-
+import de.ts.ticketsystem.client.jira.platformapi.GenericJiraRestDAO;
+import de.ts.ticketsystem.client.jira.platformapi.JiraDAO;
 import de.ts.ticketsystem.client.jira.servicedeskapi.objects.NewRestRequest;
 import de.ts.ticketsystem.client.jira.servicedeskapi.objects.Request;
-import de.ts.ticketsystem.client.jira.servicedeskapi.objects.ResultPage;
 import de.ts.ticketsystem.client.jira.servicedeskapi.objects.ServiceDesk;
 
-public class JiraServicedeskDAO {
+public class JiraServicedeskDAO extends JiraDAO{
 
-	private WebTarget target;
-	private Gson gson;
+	private GenericJiraRestDAO<Request> requestDAO;
+	private GenericJiraRestDAO<ServiceDesk> serviceDeskDAO;
 
-	/**
-	 * Constructs a new instance, which is connecting and communicating with the
-	 * given WebTarget.
-	 * 
-	 * This class expects the authentication to be taken care of.
-	 * 
-	 * @param target
-	 *            Weblocation of the Jira Servicedesk
-	 */
 	public JiraServicedeskDAO(WebTarget target) {
-		this.target = target;
-		gson = new Gson();
+		super(target);
+		this.requestDAO = new GenericJiraRestDAO<>(Request.class);
+		this.serviceDeskDAO = new GenericJiraRestDAO<>(ServiceDesk.class);
 	}
 
 	/**
@@ -50,9 +41,7 @@ public class JiraServicedeskDAO {
 		// Mandatory to use the Experimental Jira Service Desk API
 		builder.header("X-ExperimentalApi", "opt-in");
 
-		Response response = builder.get();
-		String jsonString = response.readEntity(String.class);
-		Request jiraRequest = gson.fromJson(jsonString, Request.class);
+		Request jiraRequest = requestDAO.getOne(builder);
 		return jiraRequest;
 	}
 	
@@ -70,10 +59,7 @@ public class JiraServicedeskDAO {
 		// Mandatory to use the Experimental Jira Service Desk API
 		builder.header("X-ExperimentalApi", "opt-in");
 		
-		Response response = builder.get();
-		String jsonString = response.readEntity(String.class);
-		ResultPage fromJson = gson.fromJson(jsonString, ResultPage.class);
-		List<Request> jiraRequests = fromJson.getValues();
+		List<Request> jiraRequests = requestDAO.getMany(builder);
 		return jiraRequests;
 	}
 
@@ -88,12 +74,9 @@ public class JiraServicedeskDAO {
 		// Mandatory to use the Experimental Jira Service Desk API
 		builder.header("X-ExperimentalApi", "opt-in");
 
-		Response response = builder.post(Entity.entity(jsonString, MediaType.APPLICATION_JSON), Response.class);
+		Entity<String> entity = Entity.entity(jsonString, MediaType.APPLICATION_JSON);
 
-		System.out.println(response.getStatus());
-		jsonString = response.readEntity(String.class);
-
-		Request returnedjiraRequest = gson.fromJson(jsonString, Request.class);
+		Request returnedjiraRequest = requestDAO.postOne(builder, entity);
 		return returnedjiraRequest;
 
 	}
@@ -113,10 +96,8 @@ public class JiraServicedeskDAO {
 
 		// Mandatory to use the Experimental Jira Service Desk API
 		builder.header("X-ExperimentalApi", "opt-in");
-
-		Response response = builder.get();
-		String jsonString = response.readEntity(String.class);
-		ServiceDesk serviceDesk = gson.fromJson(jsonString, ServiceDesk.class);
+		
+		ServiceDesk serviceDesk = serviceDeskDAO.getOne(builder);
 		return serviceDesk;
 	}
 

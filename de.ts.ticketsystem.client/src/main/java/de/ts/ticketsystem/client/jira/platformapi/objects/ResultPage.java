@@ -1,8 +1,10 @@
-package de.ts.ticketsystem.client.jira.servicedeskapi.objects;
+package de.ts.ticketsystem.client.jira.platformapi.objects;
 
 import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
+
+import de.ts.ticketsystem.client.jira.servicedeskapi.objects.Links;
 
 public class ResultPage<T> {
 
