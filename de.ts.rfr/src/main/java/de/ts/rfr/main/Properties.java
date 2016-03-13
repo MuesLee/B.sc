@@ -1,4 +1,4 @@
-package de.ts.ticketsystem.client.main;
+package de.ts.rfr.main;
 
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;

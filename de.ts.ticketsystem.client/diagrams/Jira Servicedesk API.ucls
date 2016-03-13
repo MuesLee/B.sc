@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.9" icons="true" automaticImage="JPEG" always-add-relationships="false" 
+  generalizations="true" realizations="true" associations="true" dependencies="false" nesting-relationships="true" 
+  router="FAN">  
+  <class id="1" language="java" name="de.ts.ticketsystem.client.jira.servicedeskapi.JiraServicedesk" 
+    project="de.ts.ticketsystem.client" 
+    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/servicedeskapi/JiraServicedesk.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="288" x="444" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="de.ts.ticketsystem.client.jira.servicedeskapi.objects.Request" 
+    project="de.ts.ticketsystem.client" 
+    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/servicedeskapi/objects/Request.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="729" width="245" x="578" y="302"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="de.ts.ticketsystem.client.jira.servicedeskapi.objects.ServiceDesk" 
+    project="de.ts.ticketsystem.client" 
+    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/servicedeskapi/objects/ServiceDesk.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="351" width="228" x="310" y="302"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="de.ts.ticketsystem.client.jira.servicedeskapi.objects.JiraDate" 
+    project="de.ts.ticketsystem.client" 
+    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/servicedeskapi/objects/JiraDate.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="261" width="228" x="827" y="1624"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="de.ts.ticketsystem.client.jira.servicedeskapi.objects.NewRestRequest" 
+    project="de.ts.ticketsystem.client" 
+    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/servicedeskapi/objects/NewRestRequest.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="225" width="323" x="42" y="37"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="de.ts.ticketsystem.client.jira.servicedeskapi.objects.NewRestRequestFieldValue" 
+    project="de.ts.ticketsystem.client" 
+    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/servicedeskapi/objects/NewRestRequestFieldValue.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="228" x="42" y="302"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="de.ts.ticketsystem.client.jira.servicedeskapi.objects.Reporter" 
+    project="de.ts.ticketsystem.client" 
+    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/servicedeskapi/objects/Reporter.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="513" width="228" x="310" y="1071"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="de.ts.ticketsystem.client.jira.servicedeskapi.objects.Status" 
+    project="de.ts.ticketsystem.client" 
+    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/servicedeskapi/objects/Status.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="228" x="578" y="1071"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="de.ts.ticketsystem.client.jira.servicedeskapi.objects.Links" 
+    project="de.ts.ticketsystem.client" 
+    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/servicedeskapi/objects/Links.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="228" x="42" y="1071"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="de.ts.ticketsystem.client.jira.servicedeskapi.objects.AvatarUrl" 
+    project="de.ts.ticketsystem.client" 
+    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/servicedeskapi/objects/AvatarUrl.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="171" width="228" x="310" y="1624"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="de.ts.ticketsystem.client.jira.servicedeskapi.objects.FieldValue" 
+    project="de.ts.ticketsystem.client" 
+    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/servicedeskapi/objects/FieldValue.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="279" width="228" x="867" y="1071"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="12">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="13" name="reporter">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="15">    
+    <end type="SOURCE" refId="8" navigable="false">      
+      <attribute id="16" name="statusDate">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="17" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="18">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="19">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="20" name="links">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="21" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="22">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="23" name="requestFieldValues">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="26" name="requestFieldValues">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="28">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="29" name="links">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="30" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="31">    
+    <bendpoint x="836" y="1071"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="32" name="createdDate">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="33" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="34">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="35" name="currentStatus">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="36" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="37">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <association id="38">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="39" name="avatarUrls">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="40" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

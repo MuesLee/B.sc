@@ -1,26 +1,27 @@
 package de.ts.ticketsystem.client.jira.servicedeskapi;
 
+import java.net.URI;
 import java.util.List;
 
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation.Builder;
-import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
-import de.ts.ticketsystem.client.jira.platformapi.GenericJiraRestDAO;
-import de.ts.ticketsystem.client.jira.platformapi.JiraDAO;
+import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
+
+import de.ts.ticketsystem.client.jira.AbstractJiraInstance;
+import de.ts.ticketsystem.client.jira.GenericJiraRestDAO;
 import de.ts.ticketsystem.client.jira.servicedeskapi.objects.NewRestRequest;
 import de.ts.ticketsystem.client.jira.servicedeskapi.objects.Request;
 import de.ts.ticketsystem.client.jira.servicedeskapi.objects.ServiceDesk;
 
-public class JiraServicedeskDAO extends JiraDAO{
+public class JiraServicedesk extends AbstractJiraInstance{
 
 	private GenericJiraRestDAO<Request> requestDAO;
 	private GenericJiraRestDAO<ServiceDesk> serviceDeskDAO;
 
-	public JiraServicedeskDAO(WebTarget target) {
-		super(target);
+	public JiraServicedesk(URI jiraUri, HttpAuthenticationFeature authenticationFeature) {
+		super(jiraUri, authenticationFeature);
 		this.requestDAO = new GenericJiraRestDAO<>(Request.class);
 		this.serviceDeskDAO = new GenericJiraRestDAO<>(ServiceDesk.class);
 	}

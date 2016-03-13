@@ -4,9 +4,16 @@ public class Issue {
 
 	private IssueFields fields;
 	
-	public Issue(IssueFields fields) {
+	private String id;
+	
+	private String key;
+	
+	public Issue() {
+	}
+	
+	public Issue(Project project, String summary, String description, IssueType issueType) {
 		super();
-		this.fields = fields;
+		this.fields = new IssueFields(project, summary, description, issueType);
 	}
 
 	public IssueFields getFields() {
@@ -17,12 +24,26 @@ public class Issue {
 		this.fields = fields;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
 	@Override
 	public String toString() {
-		return "Issue [fields=" + fields + "]";
+		return "Issue [id=" + id + ", key=" + key + ",fields=" + fields + "]";
 	}
-	
-	
 	
 	
 	

@@ -1,5 +1,7 @@
 package de.ts.ticketsystem.client.jira.platformapi.objects;
 
+import com.google.gson.annotations.SerializedName;
+
 public class IssueFields {
 
 	private Project project;
@@ -7,6 +9,7 @@ public class IssueFields {
 	private String summary;
 	private String description;
 	
+	@SerializedName("issuetype")
 	private IssueType issueType;
 	
 	
