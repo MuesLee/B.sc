@@ -3,6 +3,7 @@ package de.ts.ticketsystem.client.jira.servicedeskapi;
 import java.net.URI;
 import java.util.List;
 
+import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation.Builder;
 import javax.ws.rs.core.MediaType;
@@ -10,20 +11,21 @@ import javax.ws.rs.core.MediaType;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
 import de.ts.ticketsystem.client.jira.AbstractJiraInstance;
+import de.ts.ticketsystem.client.jira.ClientUtils;
 import de.ts.ticketsystem.client.jira.GenericJiraRestDAO;
 import de.ts.ticketsystem.client.jira.servicedeskapi.objects.NewRestRequest;
 import de.ts.ticketsystem.client.jira.servicedeskapi.objects.Request;
-import de.ts.ticketsystem.client.jira.servicedeskapi.objects.ServiceDesk;
+import de.ts.ticketsystem.client.jira.servicedeskapi.objects.Servicedesk;
 
 public class JiraServicedesk extends AbstractJiraInstance{
 
-	private GenericJiraRestDAO<Request> requestDAO;
-	private GenericJiraRestDAO<ServiceDesk> serviceDeskDAO;
+	private final GenericJiraRestDAO<Request> requestDAO;
+	private final GenericJiraRestDAO<Servicedesk> serviceDeskDAO;
 
-	public JiraServicedesk(URI jiraUri, HttpAuthenticationFeature authenticationFeature) {
+	public JiraServicedesk(final URI jiraUri, final HttpAuthenticationFeature authenticationFeature) {
 		super(jiraUri, authenticationFeature);
 		this.requestDAO = new GenericJiraRestDAO<>(Request.class);
-		this.serviceDeskDAO = new GenericJiraRestDAO<>(ServiceDesk.class);
+		this.serviceDeskDAO = new GenericJiraRestDAO<>(Servicedesk.class);
 	}
 
 	/**
@@ -33,16 +35,16 @@ public class JiraServicedesk extends AbstractJiraInstance{
 	 *            Id or Key of the searched Request
 	 * @return
 	 */
-	public Request getRequestById(String issueIdOrKey) {
+	public Request getRequestById(final String issueIdOrKey) throws ClientErrorException {
 
 		// GET /rest/servicedeskapi/request/{issueIdOrKey}
-		Builder builder = target.path("rest").path("servicedeskapi").path("request").path(issueIdOrKey)
+		final Builder builder = getTarget().path("rest").path("servicedeskapi").path("request").path(issueIdOrKey)
 				.request(MediaType.APPLICATION_JSON);
 
 		// Mandatory to use the Experimental Jira Service Desk API
 		builder.header("X-ExperimentalApi", "opt-in");
 
-		Request jiraRequest = requestDAO.getOne(builder);
+		final Request jiraRequest = requestDAO.getOne(builder);
 		return jiraRequest;
 	}
 	
@@ -51,33 +53,33 @@ public class JiraServicedesk extends AbstractJiraInstance{
 	 * 
 	 * @return
 	 */
-	public List<Request> getMyRequests() {
+	public List<Request> getMyRequests() throws ClientErrorException {
 		
 		// GET /rest/servicedeskapi/request/
-		Builder builder = target.path("rest").path("servicedeskapi").path("request")
+		final Builder builder = getTarget().path("rest").path("servicedeskapi").path("request")
 				.request(MediaType.APPLICATION_JSON);
 		
 		// Mandatory to use the Experimental Jira Service Desk API
 		builder.header("X-ExperimentalApi", "opt-in");
 		
-		List<Request> jiraRequests = requestDAO.getMany(builder);
+		final List<Request> jiraRequests = requestDAO.getMany(builder);
 		return jiraRequests;
 	}
 
-	public Request postNewRequest(NewRestRequest newRestRequest) {
+	public Request postRequest(final NewRestRequest newRestRequest) throws ClientErrorException {
 		
-		String jsonString = gson.toJson(newRestRequest);
+		final String jsonString = ClientUtils.getGson().toJson(newRestRequest);
 
 		// POST /rest/servicedeskapi/request
-		Builder builder = target.path("rest").path("servicedeskapi").path("request")
+		final Builder builder = getTarget().path("rest").path("servicedeskapi").path("request")
 				.request(MediaType.APPLICATION_JSON);
 
 		// Mandatory to use the Experimental Jira Service Desk API
 		builder.header("X-ExperimentalApi", "opt-in");
 
-		Entity<String> entity = Entity.entity(jsonString, MediaType.APPLICATION_JSON);
+		final Entity<String> entity = Entity.entity(jsonString, MediaType.APPLICATION_JSON);
 
-		Request returnedjiraRequest = requestDAO.postOne(builder, entity);
+		final Request returnedjiraRequest = requestDAO.postOne(builder, entity);
 		return returnedjiraRequest;
 
 	}
@@ -89,16 +91,16 @@ public class JiraServicedesk extends AbstractJiraInstance{
 	 *            Id of the searched service desk
 	 * @return
 	 */
-	public ServiceDesk getServiceDeskById(String serviceDeskId) {
+	public Servicedesk getServiceDeskById(final String serviceDeskId) throws ClientErrorException {
 
 		// GET /rest/servicedeskapi/servicedesk/{serviceDeskId}
-		Builder builder = target.path("rest").path("servicedeskapi").path("servicedesk").path(serviceDeskId)
+		final Builder builder = getTarget().path("rest").path("servicedeskapi").path("servicedesk").path(serviceDeskId)
 				.request(MediaType.APPLICATION_JSON);
 
 		// Mandatory to use the Experimental Jira Service Desk API
 		builder.header("X-ExperimentalApi", "opt-in");
 		
-		ServiceDesk serviceDesk = serviceDeskDAO.getOne(builder);
+		final Servicedesk serviceDesk = serviceDeskDAO.getOne(builder);
 		return serviceDesk;
 	}
 

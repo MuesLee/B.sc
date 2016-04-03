@@ -8,40 +8,36 @@ import javax.ws.rs.client.WebTarget;
 
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
-import com.google.gson.Gson;
-
 public abstract class AbstractJiraInstance {
 
-	protected WebTarget target;
-	protected Gson gson;
-	private Client client;
+	private final WebTarget target;
+	private final Client client;
 
 	/**
 	 * Constructs a new instance, which is connecting and communicating with the
 	 * given WebTarget.
 	 * 
-	 * This class expects the authentication to be taken care of.
 	 * 
 	 * @param target
 	 *            Weblocation of the Jira Servicedesk
+	 * @param authenticationFeature
+	 * 			  Authentification information for the Jira Server
 	 */
-	public AbstractJiraInstance(URI jiraUri, HttpAuthenticationFeature authenticationFeature) {
+	public AbstractJiraInstance(final URI jiraUri, final HttpAuthenticationFeature authenticationFeature) {
 
-		Client client = createHttpClient(authenticationFeature);
-		this.target = client.target(jiraUri);
-		gson = new Gson();
-	}
-
-	private Client createHttpClient(HttpAuthenticationFeature authenticationFeature) {
 		client = ClientBuilder.newClient();
 		client.register(authenticationFeature);
 
-		return client;
+		this.target = client.target(jiraUri);
 	}
 
 	@Override
 	protected void finalize() throws Throwable {
 		client.close();
+	}
+
+	public WebTarget getTarget() {
+		return target;
 	}
 
 }

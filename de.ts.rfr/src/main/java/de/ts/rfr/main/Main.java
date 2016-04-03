@@ -29,8 +29,7 @@ public class Main {
 
 		initJiraPlatformApi();
 
-		//jiraTestCase1(basicAuthenticationFeature);
-
+		jiraTestCase1(basicAuthenticationFeature);
 		jiraTestCase2(basicAuthenticationFeature);
 	}
 

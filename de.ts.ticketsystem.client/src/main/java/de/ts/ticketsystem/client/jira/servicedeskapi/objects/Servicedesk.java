@@ -2,7 +2,7 @@ package de.ts.ticketsystem.client.jira.servicedeskapi.objects;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ServiceDesk {
+public class Servicedesk {
 
 	private Integer id;
 
@@ -13,7 +13,7 @@ public class ServiceDesk {
 	private String projectName;
 	private String projectKey;
 
-	public ServiceDesk() {
+	public Servicedesk() {
 	}
 
 	@Override
