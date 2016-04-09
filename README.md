@@ -1,4 +1,4 @@
-<h1> Implementation of two JIRA REST API<h1>
+<h1> Implementation of two JIRA REST API</h1>
 
 Jira Platform REST API in Version 7.1.4 <br>
 Jira Servicedesk REST API in Version 3.2.0
