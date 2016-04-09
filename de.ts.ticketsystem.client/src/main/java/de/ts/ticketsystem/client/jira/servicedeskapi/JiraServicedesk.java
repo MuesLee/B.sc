@@ -69,7 +69,8 @@ public class JiraServicedesk extends AbstractJiraInstance{
 	public Request postRequest(final NewRestRequest newRestRequest) throws ClientErrorException {
 		
 		final String jsonString = ClientUtils.getGson().toJson(newRestRequest);
-
+		
+		System.out.println(jsonString);
 		// POST /rest/servicedeskapi/request
 		final Builder builder = getTarget().path("rest").path("servicedeskapi").path("request")
 				.request(MediaType.APPLICATION_JSON);
