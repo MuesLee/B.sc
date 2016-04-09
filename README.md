@@ -7,6 +7,13 @@ This is a prototypical implementation which covers just a few methods of the abo
 
 There are two projects. One contains a client implementation of the mentioned JIRA API and the other one contains an example for its usage.
 
+<table border="1" style="width:100%">
+<tr><th>project name</th><th>contains</th></tr>
+<tr><td>de.ts.ticketsystem.client</td><td>Client implementation</td></tr>
+<tr><td>de.ts.rfr</td><td>Example of Usecase</td></tr>
+</table>
+
+
 One may feel free to contribute and extend the implementation.
 
 
