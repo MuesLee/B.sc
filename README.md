@@ -1,9 +1,12 @@
-Implementation of two JIRA REST API:
+<h1> Implementation of two JIRA REST API<h1>
 
-Jira Platform REST API in Version 7.1.4
+Jira Platform REST API in Version 7.1.4 <br>
 Jira Servicedesk REST API in Version 3.2.0
 
 This is a prototypical implementation which covers just a few methods of the above API. 
+
+There are two projects. One contains a client implementation of the mentioned JIRA API and the other one contains an example for its usage.
+
 One may feel free to contribute and extend the implementation.
 
 
