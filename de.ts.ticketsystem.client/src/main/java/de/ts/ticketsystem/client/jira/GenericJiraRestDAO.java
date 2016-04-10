@@ -26,7 +26,7 @@ public class GenericJiraRestDAO<T> {
 	/**
 	 * POST the via builder specified path. Returns the retrieved Object or
 	 * throws a subclass of {@link RuntimeException} if the received statuscode
-	 * is not 201.
+	 * is not 200, 201.
 	 * 
 	 * @param builder
 	 *            fully specified Path
@@ -34,9 +34,9 @@ public class GenericJiraRestDAO<T> {
 	 *            Object to Post
 	 * @return Object returned, nullable
 	 * @throws ClientErrorException
-	 *             if the HTTP-Statuscode is 400, 401 or 403
+	 *             if the HTTP-Statuscode is 400, 401 or 403, 404
 	 * @throws WebApplicationException
-	 *             if the Statuscode is not 201, 400, 401 or 403
+	 *             if the Statuscode is not 200, 201, 400, 401, 404 or 403
 	 */
 	public T postOne(final Builder builder, final T t) throws ClientErrorException, WebApplicationException {
 		String jsonString = gson.toJson(t);
@@ -82,7 +82,7 @@ public class GenericJiraRestDAO<T> {
 	/**
 	 * POST the via builder specified path. Returns the retrieved Object or
 	 * throws a subclass of {@link RuntimeException} if the received statuscode
-	 * is not 201.
+	 * is not 200, 201.
 	 * 
 	 * @param builder
 	 *            fully specified Path
@@ -90,9 +90,9 @@ public class GenericJiraRestDAO<T> {
 	 *            Entity to Post
 	 * @return Object returned, nullable
 	 * @throws ClientErrorException
-	 *             if the HTTP-Statuscode is 400, 401 or 403
+	 *             if the HTTP-Statuscode is 400, 401 or 403, 404
 	 * @throws WebApplicationException
-	 *             if the Statuscode is not 201, 400, 401 or 403
+	 *             if the Statuscode is not 200, 201, 400, 401 or 403, 404
 	 */
 	public T postOne(final Builder builder, final Entity<String> entity)
 			throws ClientErrorException, WebApplicationException {
@@ -188,12 +188,14 @@ public class GenericJiraRestDAO<T> {
 		int status = response.getStatus();
 
 		switch (status) {
+		case 200:
 		case 201:
 			// completed succesfully
 			break;
 		case 400:
 		case 401:
 		case 403:
+		case 404:
 			throw new ClientErrorException(response);
 		default:
 			throw new WebApplicationException(response);
@@ -237,6 +239,7 @@ public class GenericJiraRestDAO<T> {
 		case 204:
 			// completed succesfully
 			break;
+		case 400:
 		case 401:
 		case 403:
 		case 404:
