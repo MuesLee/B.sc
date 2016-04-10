@@ -52,7 +52,7 @@ public class Main {
 				+ "; Status;Max Mustermann;Maria Musterfrau";
 		Issue issue = RfrParser.parseLineToIssue(line);
 
-		Issue returnedIssue = jiraPlatformDAO.postIssue(issue);
+		Issue returnedIssue = jiraPlatformDAO.createIssue(issue);
 		System.out.println(returnedIssue);
 
 	}
