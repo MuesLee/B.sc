@@ -42,8 +42,8 @@ public class JiraPlatform extends AbstractJiraInstance {
 	 * @return found Issue
 	 */
 	public Issue getIssue(final String issueIdOrKey) throws ClientErrorException, WebApplicationException {
+		
 		// GET /rest/api/2/issue/key
-
 		final Builder builder = getTarget().path("rest").path("api").path("2").path("issue").path(issueIdOrKey)
 				.request(MediaType.APPLICATION_JSON);
 
@@ -51,6 +51,8 @@ public class JiraPlatform extends AbstractJiraInstance {
 
 		return returnedJiraIssue;
 	}
+	
+	
 	/**
 	 * POST a new {@link Issue}. Returns the newly created Issue or throws an Exception
 	 * 

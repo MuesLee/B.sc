@@ -201,7 +201,6 @@ public class GenericJiraRestDAO<T> {
 			throw new WebApplicationException(response);
 		}
 		return response;
-
 	}
 
 	private Response delete(final Builder builder) throws ClientErrorException, WebApplicationException {

@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import javax.ws.rs.ClientErrorException;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.UriBuilder;
 
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
@@ -29,65 +31,82 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		initJiraPlatformApi();
+		initJiraApi();
 
-		jiraTestCase1(basicAuthenticationFeature);
-		//jiraTestCase2(basicAuthenticationFeature);
+		jiraTestCase1();
+
+		jiraTestCase2();
 	}
 
-	private static void initJiraPlatformApi() {
-		basicAuthenticationFeature = HttpAuthenticationFeature.basic(Properties.getString("Main.JIRA_ACCOUNTNAME"),
-				Properties.getString("Main.JIRA_PASSWORD"));
+	private static void initJiraApi() {
+
+		String userName = Properties.getString("Main.JIRA_ACCOUNTNAME");
+		String password = Properties.getString("Main.JIRA_PASSWORD");
+		HttpAuthenticationFeature basicAuthenticationFeature = HttpAuthenticationFeature.basic(userName, password);
+		
 		jiraServicedesk = new JiraServicedesk(jiraServerUri, basicAuthenticationFeature);
 		jiraPlatformDAO = new JiraPlatform(jiraServerUri, basicAuthenticationFeature);
 	}
 
-	private static void jiraTestCase2(HttpAuthenticationFeature basicAuthenticationFeature) {
-		GregorianCalendar calendar = new GregorianCalendar();
-		Date startDate = calendar.getTime();
-		calendar.add(GregorianCalendar.HOUR, 2);
-		Date endDate = calendar.getTime();
+	private static void jiraTestCase2() {
 
-		String line = "1;Schulung XYZ;B 02;11224;" + startDate + ";" + endDate
-				+ "; Status;Max Mustermann;Maria Musterfrau";
+		String line = "1;Schulung XYZ;B 02;11224;Sun Mar 13 16:36:07 CET 2016;Sun Mar 13 18:36:07 CET 2016;"
+				+ " Status;Max Mustermann;Maria Musterfrau;";
+
 		Issue issue = RfrParser.parseLineToIssue(line);
 
-		Issue returnedIssue = jiraPlatformDAO.createIssue(issue);
-		System.out.println(returnedIssue);
+		try {
+
+			Issue returnedIssue = jiraPlatformDAO.createIssue(issue);
+			System.out.println(returnedIssue);
+		} catch (WebApplicationException ex) {
+			System.out.println("Fehler bei Erstellung des Issues: " + ex.getLocalizedMessage());
+		}
 
 	}
 
-	private static void jiraTestCase1(HttpAuthenticationFeature basicAuthenticationFeature) {
-//
-//		// GET Request
-//		Request jiraRequest = jiraServicedesk.getRequestById("HEIZ-4"); //$NON-NLS-1$
-//		System.out.println(jiraRequest);
+	private static void jiraTestCase1() {
 
-		// POST Request
 		NewRestRequest givenRequest = createTestRequest();
-		Request returnedRequest = jiraServicedesk.postRequest(givenRequest); // $NON-NLS-1$
-		System.out.println(returnedRequest);
 
-//		// GET My Requests
-//		List<Request> myRequests = jiraServicedesk.getMyRequests();
-//		System.out.println(myRequests);
-//		//
-//		// GET ServiceDesk
-//		Servicedesk serviceDeskById = jiraServicedesk.getServiceDeskById("1");
-//		System.out.println(serviceDeskById);
-//
-//		Issue issue = jiraPlatformDAO.getIssue("HEIZ-2");
-//		System.out.println(issue);
+		try {
+
+			Request returnedRequest = jiraServicedesk.createRequest(givenRequest);
+
+			System.out.println(returnedRequest);
+
+		} catch (WebApplicationException ex) {
+			System.out.println("Fehler bei Erstellung des Issues: " + ex.getLocalizedMessage());
+		}
 	}
+
+	//
+	// // GET Request
+	// Request jiraRequest = jiraServicedesk.getRequestById("HEIZ-4");
+	// //$NON-NLS-1$
+	// System.out.println(jiraRequest);
+
+	// // GET My Requests
+	// List<Request> myRequests = jiraServicedesk.getMyRequests();
+	// System.out.println(myRequests);
+	// //
+	// // GET ServiceDesk
+	// Servicedesk serviceDeskById = jiraServicedesk.getServiceDeskById("1");
+	// System.out.println(serviceDeskById);
+	//
+	// Issue issue = jiraPlatformDAO.getIssue("HEIZ-2");
+	// System.out.println(issue);
 
 	private static NewRestRequest createTestRequest() {
 
 		int requestTypeId = _REQUESTTYPE_ID_TECHNISCHERSERVICE;
 		int serviceDeskId = _SERVICEDESK_ID_HEIZUNG;
-		NewRestRequestFieldValue requestFieldValues = new NewRestRequestFieldValue("Request JSD help via REST",
-				"I need a new mouse for my Mac");
+		String summary = "Request JSD help via REST";
+		String description = "I need a new mouse for my Mac";
+
+		NewRestRequestFieldValue requestFieldValues = new NewRestRequestFieldValue(summary, description);
 		NewRestRequest request = new NewRestRequest(serviceDeskId, requestTypeId, requestFieldValues);
-		request.setRequestParticipants(new String[]{"admin"});
+		request.setRequestParticipants(new String[] { "admin" });
 
 		return request;
 	}

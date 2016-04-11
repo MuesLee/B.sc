@@ -52,7 +52,7 @@ public class GenericJiraRestDAOTest {
 		// Arrange
 		Issue expected = new Issue(new Project("1"), "sum", "desc", new IssueType("1", "A"));
 		Mockito.when(response.getStatus()).thenReturn(200);
-		Mockito.when(response.getStatusInfo().getFamily()).thenReturn(Response.Status.Family.SUCCESSFUL);
+		 
 		String jsonstring = ClientUtils.getGson().toJson(expected);
 		Mockito.when(response.readEntity(Mockito.any(Class.class))).thenReturn(jsonstring);
 		Mockito.when(builder.get()).thenReturn(response);
@@ -291,6 +291,17 @@ public class GenericJiraRestDAOTest {
 	public void testPutReturns403() throws Exception {
 		// Arrange
 		Mockito.when(response.getStatus()).thenReturn(403);
+		Mockito.when(response.getStatusInfo().getFamily()).thenReturn(Response.Status.Family.CLIENT_ERROR);
+		Mockito.when(builder.put(entity, Response.class)).thenReturn(response);
+		// Act
+		classUnderTest.putOne(builder, entity);
+		// Assert
+		fail("Should have thrown an Exception");
+	}
+	@Test(expected = ClientErrorException.class)
+	public void testPutReturns412() throws Exception {
+		// Arrange
+		Mockito.when(response.getStatus()).thenReturn(412);
 		Mockito.when(response.getStatusInfo().getFamily()).thenReturn(Response.Status.Family.CLIENT_ERROR);
 		Mockito.when(builder.put(entity, Response.class)).thenReturn(response);
 		// Act

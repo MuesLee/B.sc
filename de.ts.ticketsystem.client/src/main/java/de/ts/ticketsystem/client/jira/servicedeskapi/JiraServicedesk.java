@@ -87,7 +87,7 @@ public class JiraServicedesk extends AbstractJiraInstance {
 	 * @throws WebApplicationException
 	 *             if the Statuscode is not 201, 400, 401 or 403
 	 */
-	public Request postRequest(final NewRestRequest newRestRequest)
+	public Request createRequest(final NewRestRequest newRestRequest)
 			throws ClientErrorException, WebApplicationException {
 
 

@@ -25,8 +25,8 @@ public abstract class AbstractJiraInstance {
 	 */
 	public AbstractJiraInstance(final URI jiraUri, final HttpAuthenticationFeature authenticationFeature) {
 
-		client = ClientBuilder.newClient();
-		client.register(authenticationFeature);
+		this.client = ClientBuilder.newClient();
+		this.client.register(authenticationFeature);
 
 		this.target = client.target(jiraUri);
 	}
