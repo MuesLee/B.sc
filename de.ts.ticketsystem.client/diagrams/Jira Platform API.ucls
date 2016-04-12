@@ -68,9 +68,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="de.ts.ticketsystem.client.jira.platformapi.objects.ResultPage" 
+  <class id="7" language="java" name="de.ts.ticketsystem.client.jira.platformapi.ResultPage" 
     project="de.ts.ticketsystem.client" 
-    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/platformapi/objects/ResultPage.java" 
+    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/platformapi/ResultPage.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="899" y="451"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -79,9 +79,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="de.ts.ticketsystem.client.jira.GenericJiraRestDAO" 
+  <class id="8" language="java" name="de.ts.ticketsystem.client.jira.platformapi.GenericJiraRestDAO" 
     project="de.ts.ticketsystem.client" 
-    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/GenericJiraRestDAO.java" 
+    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/platformapi/GenericJiraRestDAO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="197" y="429"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -91,35 +91,51 @@
     </display>  
   </class>  
   <association id="9">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="10" name="issueDAO"/>      
-      <multiplicity id="11" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="12">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="13" name="project"/>      
-      <multiplicity id="14" minimum="0" maximum="1"/>    
+      <attribute id="10" name="project">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="11" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="15">    
+  <association id="12">    
     <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="16" name="issueType"/>      
-      <multiplicity id="17" minimum="0" maximum="1"/>    
+      <attribute id="13" name="issueType">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="14" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="18">    
+  <association id="15">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="19" name="fields"/>      
-      <multiplicity id="20" minimum="0" maximum="1"/>    
+      <attribute id="16" name="fields">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="17" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="18">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="19" name="issueDAO">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="20" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

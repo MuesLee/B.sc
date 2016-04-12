@@ -13,9 +13,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="de.ts.ticketsystem.client.jira.AbstractJiraInstance" 
+  <class id="2" language="java" name="de.ts.ticketsystem.client.jira.platformapi.AbstractJiraInstance" 
     project="de.ts.ticketsystem.client" 
-    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/AbstractJiraInstance.java" 
+    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/platformapi/AbstractJiraInstance.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="380" y="97"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -24,9 +24,9 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="de.ts.ticketsystem.client.jira.GenericJiraRestDAO" 
+  <class id="3" language="java" name="de.ts.ticketsystem.client.jira.platformapi.GenericJiraRestDAO" 
     project="de.ts.ticketsystem.client" 
-    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/GenericJiraRestDAO.java" 
+    file="/de.ts.ticketsystem.client/src/main/java/de/ts/ticketsystem/client/jira/platformapi/GenericJiraRestDAO.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="376" y="549"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -60,28 +60,32 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization id="8">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="2"/>  
+  </generalization>  
+  <generalization id="9">    
     <end type="SOURCE" refId="1"/>    
     <end type="TARGET" refId="2"/>  
   </generalization>  
-  <association id="9">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="10" name="issueDAO"/>      
-      <multiplicity id="11" minimum="0" maximum="1"/>    
+  <association id="10">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="11" name="serviceDeskDAO">        
+        <position height="18" width="91" x="480" y="399"/>      
+      </attribute>      
+      <multiplicity id="12" minimum="0" maximum="1">        
+        <position height="0" width="0" x="43" y="11"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="12">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="2"/>  
-  </generalization>  
   <association id="13">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="14" name="serviceDeskDAO">        
-        <position height="18" width="91" x="480" y="399"/>      
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="14" name="issueDAO">        
+        <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="15" minimum="0" maximum="1">        
-        <position height="0" width="0" x="43" y="11"/>      
+        <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    

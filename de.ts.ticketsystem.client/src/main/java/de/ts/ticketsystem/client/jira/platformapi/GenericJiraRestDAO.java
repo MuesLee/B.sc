@@ -1,4 +1,4 @@
-package de.ts.ticketsystem.client.jira;
+package de.ts.ticketsystem.client.jira.platformapi;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
 
-import de.ts.ticketsystem.client.jira.platformapi.objects.ResultPage;
+import de.ts.ticketsystem.client.jira.ClientUtils;
 
 public class GenericJiraRestDAO<T> {
 

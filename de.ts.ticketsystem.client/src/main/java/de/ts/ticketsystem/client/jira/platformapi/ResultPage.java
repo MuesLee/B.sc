@@ -1,4 +1,4 @@
-package de.ts.ticketsystem.client.jira.platformapi.objects;
+package de.ts.ticketsystem.client.jira.platformapi;
 
 import java.util.List;
 

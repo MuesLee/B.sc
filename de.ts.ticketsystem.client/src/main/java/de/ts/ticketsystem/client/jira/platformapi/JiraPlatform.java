@@ -10,9 +10,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
-import de.ts.ticketsystem.client.jira.AbstractJiraInstance;
 import de.ts.ticketsystem.client.jira.ClientUtils;
-import de.ts.ticketsystem.client.jira.GenericJiraRestDAO;
 import de.ts.ticketsystem.client.jira.platformapi.objects.Assignee;
 import de.ts.ticketsystem.client.jira.platformapi.objects.Issue;
 
