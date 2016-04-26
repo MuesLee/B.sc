@@ -1,4 +1,4 @@
-package de.ts.ticketsystem.client.jira.platformapi;
+package de.ts.ticketsystem.client.jira;
 
 import java.net.URI;
 

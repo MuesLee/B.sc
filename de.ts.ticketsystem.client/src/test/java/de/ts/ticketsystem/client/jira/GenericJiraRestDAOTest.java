@@ -1,4 +1,4 @@
-package de.ts.ticketsystem.client.jira.platformapi;
+package de.ts.ticketsystem.client.jira;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -18,7 +18,7 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import de.ts.ticketsystem.client.jira.ClientUtils;
-import de.ts.ticketsystem.client.jira.platformapi.GenericJiraRestDAO;
+import de.ts.ticketsystem.client.jira.GenericJiraRestDAO;
 import de.ts.ticketsystem.client.jira.platformapi.objects.Issue;
 import de.ts.ticketsystem.client.jira.platformapi.objects.IssueType;
 import de.ts.ticketsystem.client.jira.platformapi.objects.Project;
